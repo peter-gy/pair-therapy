@@ -1,0 +1,38 @@
+{
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1.0.14",
+    "@std/cli/parse-args": "jsr:@std/cli@1.0.28/parse-args",
+    "pi": "npm:@earendil-works/pi-coding-agent@0.84.2"
+  },
+  "nodeModulesDir": "auto",
+  "lock": {
+    "path": "deno.lock",
+    "frozen": true
+  },
+  "tasks": {
+    "therapy": {
+      "description": "Run the Pair Therapy CLI",
+      "command": "deno run -A --env-file=.env src/main.ts"
+    },
+    "eval": {
+      "description": "Evaluate the default scenario across configured models",
+      "command": "deno task therapy eval"
+    },
+    "models": {
+      "description": "Check the configured model catalog",
+      "command": "deno task therapy models"
+    },
+    "inspect": {
+      "description": "Inspect a saved evaluation run",
+      "command": "deno task therapy inspect"
+    },
+    "fmt": "deno fmt --check",
+    "lint": "deno lint",
+    "typecheck": "deno check src/main.ts therapy.config.ts scenarios/help-cm/scenario.ts",
+    "test": "deno test --allow-read --allow-write",
+    "check": {
+      "description": "Run formatting, lint, types, and tests",
+      "dependencies": ["fmt", "lint", "typecheck", "test"]
+    }
+  }
+}
