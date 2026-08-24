@@ -1,0 +1,105 @@
+README.md
+  s_86733dbcd3d0f3::t_5fb6d337fe308d 28-36
+  s_86733dbcd3d0f3::t_5ee70e52ebb086 65-66,69-70
+  s_86733dbcd3d0f3::t_1b0035fe6f82d1 6-7
+  s_86733dbcd3d0f3::t_005b9ad65c0d59 59-61
+  s_86733dbcd3d0f3::t_bfde3f2e3cc78e 1-2,8-22,37-57,62-64,67-68,71-77,80-85
+  s_86733dbcd3d0f3::t_66df50af386ad5 3-5
+  s_86733dbcd3d0f3::t_7ad5c30be82b3c 23-27
+  s_86733dbcd3d0f3::t_b34f9ebe3a52bb 58,78-79
+src/adapters/pi/harness.ts
+  s_86733dbcd3d0f3::t_3c25fae60ebdba 172-180,199
+  s_86733dbcd3d0f3::t_4a2d83945d9bab 7,98-137,211-234
+  s_86733dbcd3d0f3::t_0f5bd74881b542 181-183
+  s_86733dbcd3d0f3::t_8e509be996a324 89
+  s_86733dbcd3d0f3::t_5d590d3315b272 184-185
+therapy.config.ts
+  s_86733dbcd3d0f3::t_57761933e1bd59 33
+src/main.ts
+  s_86733dbcd3d0f3::t_8e509be996a324 24
+  s_86733dbcd3d0f3::t_57761933e1bd59 23
+src/adapters/marimo.ts
+  s_86733dbcd3d0f3::t_57761933e1bd59 98-116
+tests/plan_test.ts
+  s_86733dbcd3d0f3::t_57761933e1bd59 23-62
+.gitignore
+  s_86733dbcd3d0f3::t_fa6077ca541388 2
+tests/evaluate_test.ts
+  s_86733dbcd3d0f3::t_5140d78222bfa4 76-78,81-84
+  s_86733dbcd3d0f3::t_9b9e8c74eb93bd 79
+  s_86733dbcd3d0f3::t_f8b73ba0e750d5 39,80
+  s_86733dbcd3d0f3::t_c1d75856dcd149 85,95-110
+  s_86733dbcd3d0f3::t_159405c091c530 86-94
+tests/environment_test.ts
+  s_86733dbcd3d0f3::t_ed641470fa4edc 1-16
+src/cli.ts
+  s_86733dbcd3d0f3::t_cd82494c7ef90f 99
+  s_86733dbcd3d0f3::t_00b5835c937c03 116-123
+  s_86733dbcd3d0f3::t_ee8ff428ba71f1 75-76
+.env.example
+  s_86733dbcd3d0f3::t_57761933e1bd59 1-2
+scenarios/help-cm/scenario.ts
+  s_86733dbcd3d0f3::t_5140d78222bfa4 9-10
+  s_86733dbcd3d0f3::t_6974dd372b092f 80,87
+  s_86733dbcd3d0f3::t_159405c091c530 34
+  s_86733dbcd3d0f3::t_c1d75856dcd149 11,63-72,84-86,88-107
+development_docs/architecture.md
+  s_86733dbcd3d0f3::t_b34f9ebe3a52bb 36-41,65-67
+  s_86733dbcd3d0f3::t_5ee70e52ebb086 62
+  s_86733dbcd3d0f3::t_bfde3f2e3cc78e 1-35,42-61,63-64,68-116
+src/domain.ts
+  s_86733dbcd3d0f3::t_4e4bbcde895e08 156-172
+  s_86733dbcd3d0f3::t_57761933e1bd59 35-77
+  s_86733dbcd3d0f3::t_cd82494c7ef90f 192-197
+  s_86733dbcd3d0f3::t_88a90a9f654ccc 133
+src/adapters/artifacts.ts
+  s_86733dbcd3d0f3::t_beed999be2c030 1-27,31-71,105-113,117-125,127-162
+  s_86733dbcd3d0f3::t_57761933e1bd59 126
+  s_86733dbcd3d0f3::t_3623303d1feb75 28,30
+  s_86733dbcd3d0f3::t_b42b97c0f2e54d 72-85
+  s_86733dbcd3d0f3::t_6974dd372b092f 29,114-116
+tests/cli_test.ts
+  s_86733dbcd3d0f3::t_cd82494c7ef90f 67
+  s_86733dbcd3d0f3::t_392e46a5a77144 70-78
+  s_86733dbcd3d0f3::t_ee8ff428ba71f1 43-66,68-69,79-92
+  s_86733dbcd3d0f3::t_dc2119dd5e0622 112-165
+src/adapters/pi/environment.ts
+  s_86733dbcd3d0f3::t_4a2d83945d9bab 1-31
+src/run.ts
+  s_86733dbcd3d0f3::t_13ca11edf86733 90,123
+  s_86733dbcd3d0f3::t_883182c8b826b1 95-109
+tests/run_test.ts
+  s_86733dbcd3d0f3::t_bf36a817f5f6e3 82-83,85-86,88
+  s_86733dbcd3d0f3::t_6974dd372b092f 12-21
+  s_86733dbcd3d0f3::t_392e46a5a77144 26
+  s_86733dbcd3d0f3::t_883182c8b826b1 8,64-69,84,87,90
+deno.json
+  s_86733dbcd3d0f3::t_ed641470fa4edc 32
+src/evaluate.ts
+  s_86733dbcd3d0f3::t_cd82494c7ef90f 54-58,61-77
+  s_86733dbcd3d0f3::t_dc2119dd5e0622 59-60
+src/plan.ts
+  s_86733dbcd3d0f3::t_57761933e1bd59 61-242
+src/ports.ts
+  s_86733dbcd3d0f3::t_4e4bbcde895e08 42-67
+tests/artifacts_test.ts
+  s_86733dbcd3d0f3::t_6974dd372b092f 36-39
+  s_86733dbcd3d0f3::t_57761933e1bd59 45
+  s_86733dbcd3d0f3::t_ed641470fa4edc 1-35,40-44,46-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "1270933ebbca92ffc5794c69d82f2cda38940bfa",
+  "prompts": {},
+  "sessions": {
+    "s_86733dbcd3d0f3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a03306-e09a-7f71-908f-2d3643eefb83",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Péter Ferenc Gyarmati <dev.petergy@gmail.com>"
+    }
+  }
+}
