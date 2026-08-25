@@ -10,6 +10,7 @@ import type {
   ArtifactPort,
   CatalogPort,
   HarnessPort,
+  HarnessRun,
   ProgressSink,
   WorkspacePort,
 } from "./ports.ts";
@@ -83,15 +84,33 @@ export function createEvaluationRunner(input: {
           artifacts,
           options.signal,
         );
-        const output = await input.harness.run({
-          plan,
-          model: trial.model,
-          prompt: renderPrompt(plan.scenario, workspace.url),
-          run,
-          workspace,
-          artifacts,
-          signal: options.signal,
+        const cancel = new AbortController();
+        const forwardAbort = () => cancel.abort();
+        options.signal?.addEventListener("abort", forwardAbort, {
+          once: true,
         });
+        if (options.signal?.aborted) cancel.abort();
+        const sessionLost = workspace.failed.then((error) => {
+          cancel.abort();
+          throw new TherapyError(error.code, error.message);
+        });
+        let output: HarnessRun;
+        try {
+          output = await Promise.race([
+            input.harness.run({
+              plan,
+              model: trial.model,
+              prompt: renderPrompt(plan.scenario, workspace.url),
+              run,
+              workspace,
+              artifacts,
+              signal: cancel.signal,
+            }),
+            sessionLost,
+          ]);
+        } finally {
+          options.signal?.removeEventListener("abort", forwardAbort);
+        }
         let predicates = evaluatePredicates(
           plan.scenario.predicates,
           output.log,

@@ -52,6 +52,7 @@ Deno.test("evaluation runner separates harness and predicate errors", async () =
           url: "http://127.0.0.1:2718",
           cwd: paths.workspace,
           notebook: `${paths.workspace}/notebook.py`,
+          failed: new Promise(() => {}),
           dispose: () => {
             disposed.push(paths.workspace);
             return Promise.resolve();
@@ -89,6 +90,84 @@ Deno.test("evaluation runner separates harness and predicate errors", async () =
   assertEquals(written[0].error, {
     code: "provider_failed",
     message: "provider unavailable",
+  });
+  assertEquals(disposed, ["/artifacts/run-1/gpt-5.6-sol/workspace"]);
+});
+
+Deno.test("evaluation runner fails when the workspace session is lost", async () => {
+  const disposed: string[] = [];
+  const written: TrialResult[] = [];
+  const artifacts: ArtifactPort = {
+    beginRun: () =>
+      Promise.resolve({
+        root: "/artifacts/run-1",
+        inputs: {
+          systemPrompt: "/artifacts/run-1/inputs/SYSTEM.md",
+          systemPromptDigest: "system-digest",
+          skill: "/artifacts/run-1/inputs/marimo-pair",
+          skillDigest: "skill-digest",
+        },
+      }),
+    beginTrial: (_run, model) =>
+      Promise.resolve({
+        root: `/artifacts/run-1/${model.id}`,
+        workspace: `/artifacts/run-1/${model.id}/workspace`,
+        harness: `/artifacts/run-1/${model.id}/harness`,
+        marimoLog: `/artifacts/run-1/${model.id}/marimo.log`,
+      }),
+    writeTrial: (_paths, result) => {
+      written.push(result);
+      return Promise.resolve();
+    },
+    writeSummary: () => Promise.resolve(),
+    readSummary: () => Promise.reject(new Error("unused")),
+  };
+  const times = [
+    "2026-08-24T00:00:00Z",
+    "2026-08-24T00:00:01Z",
+    "2026-08-24T00:00:02Z",
+    "2026-08-24T00:00:03Z",
+  ].map((value) => new Date(value));
+  const runner = createEvaluationRunner({
+    catalog: {
+      check: (models) =>
+        Promise.resolve(
+          models.map((model) => ({ id: model.id, available: true })),
+        ),
+    },
+    workspace: {
+      start: (_scenario, paths) =>
+        Promise.resolve({
+          url: "http://127.0.0.1:2718",
+          cwd: paths.workspace,
+          notebook: `${paths.workspace}/notebook.py`,
+          failed: Promise.resolve({
+            code: "marimo_session_lost",
+            message: "socket closed",
+          }),
+          dispose: () => {
+            disposed.push(paths.workspace);
+            return Promise.resolve();
+          },
+        }),
+    },
+    harness: {
+      run: () => new Promise(() => {}),
+    },
+    artifacts,
+    now: () => times.shift() ?? new Date("2026-08-24T00:00:03Z"),
+  });
+  const plan = createEvaluationPlan(config, {
+    id: "run-1",
+    models: ["gpt-5.6-sol"],
+  });
+
+  const { summary } = await runner(plan);
+
+  assertEquals(summary.status, "error");
+  assertEquals(written[0].error, {
+    code: "marimo_session_lost",
+    message: "socket closed",
   });
   assertEquals(disposed, ["/artifacts/run-1/gpt-5.6-sol/workspace"]);
 });
