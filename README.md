@@ -25,14 +25,16 @@ endpoints, API-key providers, and OAuth-backed subscriptions, we recommend
 [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) as a convenient
 local aggregator.
 
-From the Pair Therapy root, clone marimo-pair at the path expected by the
-repository symlink:
+The first `eval` clones
+[marimo-pair](https://github.com/marimo-team/marimo-pair) into `./marimo-pair`
+when that checkout is missing and uses `marimo-pair/skills/marimo-pair` as the
+skill under test. Fetch it ahead of time with:
 
 ```bash
-git clone https://github.com/marimo-team/marimo-pair ../../marimo-pair
+deno task setup
 ```
 
-`.agents/skills/marimo-pair` uses that checkout as the skill under test.
+Check out a branch or commit in `./marimo-pair` to evaluate that revision.
 
 Check the configured model IDs, then run one model:
 

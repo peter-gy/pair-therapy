@@ -5,6 +5,7 @@ import { createArtifactStore } from "./adapters/artifacts.ts";
 import { createMarimoWorkspace } from "./adapters/marimo.ts";
 import { createOpenAiCatalog } from "./adapters/openai.ts";
 import { createPiHarness } from "./adapters/pi/harness.ts";
+import { ensureMarimoPairCheckout } from "./adapters/skill.ts";
 import { type CliServices, runCli } from "./cli.ts";
 import { createEvaluationRunner } from "./run.ts";
 
@@ -31,6 +32,12 @@ if (import.meta.main) {
   const abort = () => controller.abort();
   Deno.addSignalListener("SIGINT", abort);
   try {
+    if (Deno.args[0] === "eval") {
+      await ensureMarimoPairCheckout(ROOT, {
+        skill: config.skill,
+        log: (message) => console.error(message),
+      });
+    }
     Deno.exit(
       await runCli(Deno.args, runtimeServices(), undefined, controller.signal),
     );

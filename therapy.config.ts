@@ -27,7 +27,7 @@ export default {
   thinking: "medium",
   timeoutMs: 180_000,
   systemPrompt: "SYSTEM.md",
-  skill: ".agents/skills/marimo-pair",
+  skill: "marimo-pair/skills/marimo-pair",
   runs: "runs",
   marimo: {
     command: ["uvx", "marimo@0.24.0"],
