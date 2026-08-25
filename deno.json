@@ -14,6 +14,10 @@
       "description": "Run the Pair Therapy CLI",
       "command": "deno run -A --env-file=.env src/main.ts"
     },
+    "setup": {
+      "description": "Clone marimo-pair into this repository if it is missing",
+      "command": "deno run -A src/setup.ts"
+    },
     "eval": {
       "description": "Evaluate the default scenario across configured models",
       "command": "deno task therapy eval"
@@ -28,7 +32,7 @@
     },
     "fmt": "deno fmt --check",
     "lint": "deno lint",
-    "typecheck": "deno check src/main.ts therapy.config.ts scenarios/help-cm/scenario.ts",
+    "typecheck": "deno check src/main.ts src/setup.ts therapy.config.ts scenarios/help-cm/scenario.ts",
     "test": "deno test --allow-read --allow-write",
     "check": {
       "description": "Run formatting, lint, types, and tests",
