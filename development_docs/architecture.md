@@ -47,21 +47,19 @@ composition root that selects the concrete adapters.
 
 One evaluation follows this sequence:
 
-1. If `marimo-pair/skills/marimo-pair` is missing, clone marimo-pair into
-   `./marimo-pair`.
-2. Check selected model IDs with one catalog request.
-3. Snapshot `SYSTEM.md` and the `marimo-pair` skill checkout. Record SHA-256
+1. Check selected model IDs with one catalog request.
+2. Snapshot `SYSTEM.md` and the `marimo-pair` skill checkout. Record SHA-256
    digests and the configured marimo command in `plan.json`.
-4. For each model, create a fresh fixture workspace and harness directory.
-5. Start marimo with the configured argv vector. The default is
-   `uvx marimo@0.24.0 edit ...`, so uv owns Python selection, package
-   resolution, environment isolation, and caching.
-6. Start Pi with the frozen skill, frozen system prompt, selected model, and
+3. For each model, create a fresh fixture workspace and harness directory.
+4. Start a live notebook workspace from the scenario fixture. The configured
+   marimo command owns Python selection, package resolution, environment
+   isolation, and caching.
+5. Start Pi with the frozen skill, frozen system prompt, selected model, and
    run-local agent directory. Native `/skill:name` expansion loads the skill
    body into the model context.
-7. Project the Pi session into `EvaluationLog`, evaluate predicates, and write
+6. Project the Pi session into `EvaluationLog`, evaluate predicates, and write
    the trial result.
-8. Dispose the spawned workspace process before starting the next model.
+7. Dispose the spawned workspace process before starting the next model.
 
 Trials run sequentially. Pi automatic retry and compaction are disabled, and
 unrelated parent environment values are blanked before the Pi subprocess starts.

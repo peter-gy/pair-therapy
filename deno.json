@@ -33,7 +33,7 @@
     "fmt": "deno fmt --check",
     "lint": "deno lint",
     "typecheck": "deno check src/main.ts src/setup.ts therapy.config.ts scenarios/help-cm/scenario.ts",
-    "test": "deno test --allow-read --allow-write",
+    "test": "deno test --allow-read --allow-write --allow-net",
     "check": {
       "description": "Run formatting, lint, types, and tests",
       "dependencies": ["fmt", "lint", "typecheck", "test"]

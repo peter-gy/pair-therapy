@@ -26,6 +26,7 @@ export interface WorkspaceLease {
   readonly url: string;
   readonly cwd: string;
   readonly notebook: string;
+  readonly failed: Promise<Failure>;
   dispose(): Promise<void>;
 }
 
